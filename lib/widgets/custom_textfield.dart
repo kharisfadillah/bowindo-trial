@@ -6,10 +6,12 @@ import '../res/colors.dart';
 class CustomTextField extends StatelessWidget {
   final String labelText;
   final String hintText;
+  final TextEditingController? controller;
   const CustomTextField({
     super.key,
     required this.labelText,
     required this.hintText,
+    this.controller,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
           height: 5,
         ),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: GoogleFonts.poppins(

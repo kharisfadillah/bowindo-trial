@@ -1,6 +1,9 @@
-import 'package:bowindo_trial/pages/auth/login_page.dart';
-import 'package:bowindo_trial/pages/employee/list_employee_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'pages/auth/login_page.dart';
+import 'pages/employee/form_employee_page.dart';
+import 'providers/auth_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +15,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: ListEmployeePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+      ],
+      child: const MaterialApp(
+        title: 'Bowindo Trial',
+        home: LoginPage(),
+      ),
     );
   }
 }
