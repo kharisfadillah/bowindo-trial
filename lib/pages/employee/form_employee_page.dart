@@ -5,8 +5,42 @@ import '../../res/colors.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textfield.dart';
 
-class FormEmployeePage extends StatelessWidget {
+class FormEmployeePage extends StatefulWidget {
   const FormEmployeePage({super.key});
+
+  @override
+  State<FormEmployeePage> createState() => _FormEmployeePageState();
+}
+
+class _FormEmployeePageState extends State<FormEmployeePage> {
+  late TextEditingController nameController;
+  late TextEditingController addressController;
+  late TextEditingController emailController;
+  late TextEditingController birthController;
+  late TextEditingController departmentController;
+  late TextEditingController branchController;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    addressController = TextEditingController();
+    emailController = TextEditingController();
+    birthController = TextEditingController();
+    departmentController = TextEditingController();
+    branchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    addressController.dispose();
+    emailController.dispose();
+    birthController.dispose();
+    departmentController.dispose();
+    branchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +74,13 @@ class FormEmployeePage extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
-                      children: const [
+                      children: [
                         CustomTextField(
                           labelText: 'Name',
                           hintText: 'Enter Name',
+                          controller: nameController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         CustomTextField(

@@ -16,6 +16,9 @@ class EmployeeProvider with ChangeNotifier {
     return true;
   }
 
+  Future<bool?> deleteEmployee(int employeeId) =>
+      _employeeRepository.deleteEmployee(employeeId);
+
   void setLoading(bool value) {
     isLoading = value;
     notifyListeners();

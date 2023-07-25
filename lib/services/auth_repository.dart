@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../models/user.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,8 @@ class AuthRepository {
         "user_password": password,
       },
     );
+
+    log(response.body);
 
     var jsonString = jsonDecode(response.body);
     if (response.statusCode == 200) {

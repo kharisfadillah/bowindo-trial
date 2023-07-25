@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/auth/login_page.dart';
-import 'pages/employee/form_employee_page.dart';
 import 'providers/auth_provider.dart';
+import 'providers/employee_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<EmployeeProvider>(create: (_) => EmployeeProvider()),
       ],
       child: const MaterialApp(
         title: 'Bowindo Trial',

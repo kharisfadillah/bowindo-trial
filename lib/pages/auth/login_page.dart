@@ -132,6 +132,10 @@ class _LoginPageState extends State<LoginPage> {
                                   context: context,
                                   message: 'Sukses',
                                 );
+                                SharedPreferences.getInstance().then(
+                                    (sharedPref) => sharedPref.setString(
+                                        'token', authProvider.token ?? ''));
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

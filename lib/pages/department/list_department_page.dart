@@ -9,16 +9,15 @@ import 'package:provider/provider.dart';
 
 import '../../widgets/custom_dialog.dart';
 import '../../widgets/custom_snackbar.dart';
-import 'form_employee_page.dart';
 
-class ListEmployeePage extends StatefulWidget {
-  const ListEmployeePage({super.key});
+class ListDepartmentPage extends StatefulWidget {
+  const ListDepartmentPage({super.key});
 
   @override
-  State<ListEmployeePage> createState() => _ListEmployeePageState();
+  State<ListDepartmentPage> createState() => _ListDepartmentPageState();
 }
 
-class _ListEmployeePageState extends State<ListEmployeePage> {
+class _ListDepartmentPageState extends State<ListDepartmentPage> {
   TableRow _buildTableRow({
     required String labelText,
     required String contentText,
@@ -61,10 +60,10 @@ class _ListEmployeePageState extends State<ListEmployeePage> {
   @override
   void initState() {
     super.initState();
-    loadEmployee();
+    loadDepartment();
   }
 
-  void loadEmployee() {
+  void loadDepartment() {
     Future.delayed(const Duration(milliseconds: 0), () async {
       context.read<EmployeeProvider>().setLoading(true);
       try {

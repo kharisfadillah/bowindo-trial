@@ -77,3 +77,83 @@ class Employee {
     return _data;
   }
 }
+
+class AddEmployeeRequest {
+  String? employeeName;
+  String? employeeAddress;
+  String? employeeMail;
+  String? employeeDob;
+  int? departmentId;
+  String? branchId;
+
+  AddEmployeeRequest({
+    this.employeeName,
+    this.employeeAddress,
+    this.employeeMail,
+    this.employeeDob,
+    this.departmentId,
+    this.branchId,
+  });
+
+  AddEmployeeRequest.fromJson(Map<String, dynamic> json) {
+    employeeName = json["employee_name"];
+    employeeAddress = json["employee_address"];
+    employeeMail = json["employee_mail"];
+    employeeDob = json["employee_dob"];
+    departmentId = json["department_id"];
+    branchId = json["branch_id"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["employee_name"] = employeeName;
+    _data["employee_address"] = employeeAddress;
+    _data["employee_mail"] = employeeMail;
+    _data["employee_dob"] = employeeDob;
+    _data["department_id"] = departmentId;
+    _data["branch_id"] = branchId;
+    return _data;
+  }
+}
+
+class EditEmployeeRequest {
+  int? employeeId;
+  String? employeeName;
+  String? employeeAddress;
+  String? employeeMail;
+  String? employeeDob;
+  int? departmentId;
+  String? branchId;
+
+  EditEmployeeRequest({
+    this.employeeId,
+    this.employeeName,
+    this.employeeAddress,
+    this.employeeMail,
+    this.employeeDob,
+    this.departmentId,
+    this.branchId,
+  });
+
+  EditEmployeeRequest.fromJson(Map<String, dynamic> json) {
+    employeeId = json["employee_id"];
+    employeeName = json["employee_name"];
+    employeeAddress = json["employee_address"];
+    employeeMail = json["employee_mail"];
+    employeeDob = json["employee_dob"];
+    departmentId = json["department_id"];
+    branchId = json["branch_id"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["employee_id"] = employeeId;
+    _data["employee_name"] = employeeName;
+    _data["employee_address"] = employeeAddress;
+    _data["employee_mail"] = employeeMail;
+    _data["employee_dob"] = employeeDob;
+    _data["department_id"] = departmentId;
+    _data["branch_id"] = branchId;
+    return _data;
+  }
+}
