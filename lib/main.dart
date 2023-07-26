@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'pages/auth/login_page.dart';
 import 'providers/auth_provider.dart';
+import 'providers/branch_provider.dart';
+import 'providers/department_provider.dart';
 import 'providers/employee_provider.dart';
 
 void main() {
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
         ChangeNotifierProvider<EmployeeProvider>(create: (_) => EmployeeProvider()),
+        ChangeNotifierProvider<DepartmentProvider>(create: (_) => DepartmentProvider()),
+        ChangeNotifierProvider<BranchProvider>(create: (_) => BranchProvider()),
       ],
       child: const MaterialApp(
         title: 'Bowindo Trial',

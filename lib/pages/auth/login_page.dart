@@ -128,15 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                               authProvider
                                   .login(userId, password)
                                   .then((value) {
-                                CustomSnackbar.showInfo(
-                                  context: context,
-                                  message: 'Sukses',
-                                );
                                 SharedPreferences.getInstance().then(
                                     (sharedPref) => sharedPref.setString(
                                         'token', authProvider.token ?? ''));
 
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>

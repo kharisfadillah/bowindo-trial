@@ -157,17 +157,25 @@ class _ListEmployeePageState extends State<ListEmployeePage> {
                       )
                     : ListView.separated(
                         padding: const EdgeInsets.all(20),
-                        itemCount: employeeProvider.listEmployees?.length ?? 0,
+                        itemCount: employeeProvider.listEmployee?.length ?? 0,
                         itemBuilder: (context, index) {
-                          var employee = employeeProvider.listEmployees![index];
+                          var employee = employeeProvider.listEmployee![index];
                           return Slidable(
                             key: UniqueKey(),
                             endActionPane: ActionPane(
                               motion: const ScrollMotion(),
                               children: [
                                 SlidableAction(
-                                  onPressed: (context) {
-                                    log('buahahaha');
+                                  onPressed: (context) async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FormEmployeePage(
+                                          employee: employee,
+                                        ),
+                                      ),
+                                    );
+                                    loadEmployee();
                                   },
                                   backgroundColor: AppColorStyle.primary,
                                   foregroundColor: Colors.white,

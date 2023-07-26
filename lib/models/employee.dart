@@ -83,7 +83,7 @@ class AddEmployeeRequest {
   String? employeeAddress;
   String? employeeMail;
   String? employeeDob;
-  int? departmentId;
+  String? departmentId;
   String? branchId;
 
   AddEmployeeRequest({
@@ -117,12 +117,12 @@ class AddEmployeeRequest {
 }
 
 class EditEmployeeRequest {
-  int? employeeId;
+  String? employeeId;
   String? employeeName;
   String? employeeAddress;
   String? employeeMail;
   String? employeeDob;
-  int? departmentId;
+  String? departmentId;
   String? branchId;
 
   EditEmployeeRequest({

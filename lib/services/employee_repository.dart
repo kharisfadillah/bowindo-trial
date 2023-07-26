@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,7 +56,7 @@ class EmployeeRepository {
       body: employee.toJson(),
     );
 
-    log(response.body);
+    log('${response.statusCode} : ${response.body}');
 
     var jsonString = jsonDecode(response.body);
     if (response.statusCode != 200) {
@@ -66,13 +67,12 @@ class EmployeeRepository {
 
   Future<bool> deleteEmployee(int employeeId) async {
     final sharedPref = await SharedPreferences.getInstance();
-    http.Response response = await http.post(
-      Uri.parse(Endpoint.employeeDelete),
-      headers: {'token': '${sharedPref.getString('token')}'},
-      body: {
-        'employee_id' : '$employeeId',
-      }
-    );
+    http.Response response =
+        await http.post(Uri.parse(Endpoint.employeeDelete), headers: {
+      'token': '${sharedPref.getString('token')}'
+    }, body: {
+      'employee_id': '$employeeId',
+    });
 
     log(response.body);
 

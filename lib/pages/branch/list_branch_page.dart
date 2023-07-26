@@ -1,21 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/branch.dart';
 import '../../models/department.dart';
+import '../../providers/branch_provider.dart';
 import '../../providers/department_provider.dart';
 import '../../res/colors.dart';
 import '../../widgets/custom_snackbar.dart';
 
-class ListDepartmentPage extends StatefulWidget {
-  const ListDepartmentPage({super.key});
+class ListBranchPage extends StatefulWidget {
+  const ListBranchPage({super.key});
 
   @override
-  State<ListDepartmentPage> createState() => _ListDepartmentPageState();
+  State<ListBranchPage> createState() => _ListBranchPageState();
 }
 
-class _ListDepartmentPageState extends State<ListDepartmentPage> {
+class _ListBranchPageState extends State<ListBranchPage> {
   TableRow _buildTableRow({
     required String labelText,
     required String contentText,
@@ -58,21 +59,21 @@ class _ListDepartmentPageState extends State<ListDepartmentPage> {
   @override
   void initState() {
     super.initState();
-    loadDepartment();
+    loadBranch();
   }
 
-  void loadDepartment() {
+  void loadBranch() {
     Future.delayed(const Duration(milliseconds: 0), () async {
-      context.read<DepartmentProvider>().setLoading(true);
+      context.read<BranchProvider>().setLoading(true);
       try {
-        await context.read<DepartmentProvider>().getDepartment();
+        await context.read<BranchProvider>().getBranch();
       } catch (e) {
         CustomSnackbar.showError(
           context: context,
           message: e.toString(),
         );
       } finally {
-        context.read<DepartmentProvider>().setLoading(false);
+        context.read<BranchProvider>().setLoading(false);
       }
     });
   }
@@ -95,9 +96,9 @@ class _ListDepartmentPageState extends State<ListDepartmentPage> {
                 ),
               ),
             ),
-            body: Consumer<DepartmentProvider>(
-              builder: (context, departmentProvider, _) {
-                return departmentProvider.isLoading
+            body: Consumer<BranchProvider>(
+              builder: (context, branchProvider, _) {
+                return branchProvider.isLoading
                     ? const Center(
                         child: CircularProgressIndicator(
                           color: AppColorStyle.primary,
@@ -105,9 +106,9 @@ class _ListDepartmentPageState extends State<ListDepartmentPage> {
                       )
                     : ListView.separated(
                         padding: const EdgeInsets.all(20),
-                        itemCount: departmentProvider.listDepartment?.length ?? 0,
+                        itemCount: branchProvider.listBranch?.length ?? 0,
                         itemBuilder: (context, index) {
-                          var department = departmentProvider.listDepartment![index];
+                          var branch = branchProvider.listBranch![index];
                           return Container(
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -120,7 +121,7 @@ class _ListDepartmentPageState extends State<ListDepartmentPage> {
                               color: Colors.transparent,
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.pop<Department>(context, department);
+                                  Navigator.pop<Branch>(context, branch);
                                 },
                                 child: Column(
                                   children: [
@@ -134,14 +135,19 @@ class _ListDepartmentPageState extends State<ListDepartmentPage> {
                                         },
                                         children: [
                                           _buildTableRow(
-                                            labelText: 'Department Id',
+                                            labelText: 'Branch Name',
                                             contentText:
-                                                department.departmentId?.toString() ?? '',
+                                                branch.branchName ?? '',
                                           ),
                                           _buildTableRow(
-                                            labelText: 'Department Name',
+                                            labelText: 'Branch Address',
                                             contentText:
-                                                department.departmentName ?? '',
+                                                branch.branchAddress ?? '',
+                                          ),
+                                          _buildTableRow(
+                                            labelText: 'Branch Phone',
+                                            contentText:
+                                                branch.branchPhone ?? '',
                                           ),
                                         ],
                                       ),

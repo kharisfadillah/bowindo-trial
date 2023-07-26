@@ -7,14 +7,20 @@ class EmployeeProvider with ChangeNotifier {
   final _employeeRepository = EmployeeRepository();
   bool isLoading = false;
 
-  List<Employee>? listEmployees;
+  List<Employee>? listEmployee;
 
   Future<bool?> getEmployee() async {
     var data = await _employeeRepository.getEmployee();
-    listEmployees = data?.data;
+    listEmployee = data?.data;
     notifyListeners();
     return true;
   }
+
+  Future<bool?> addEmployee(AddEmployeeRequest employee) =>
+      _employeeRepository.addEmployee(employee);
+  
+  Future<bool?> editEmployee(EditEmployeeRequest employee) =>
+      _employeeRepository.editEmployee(employee);
 
   Future<bool?> deleteEmployee(int employeeId) =>
       _employeeRepository.deleteEmployee(employeeId);
